@@ -1,0 +1,28 @@
+# Node modules
+node_modules/
+
+# Build output
+build/
+
+# Logs
+*.log
+
+# Environment files
+.env
+.env.local
+
+# IDE/Editor directories and files
+.vscode/
+.idea/
+
+# MacOS specific
+.DS_Store
+
+# Windows specific
+Thumbs.db
+
+# Linux specific
+*~
+
+# Yarn Integrity file
+.yarn-integrity
