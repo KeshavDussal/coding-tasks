@@ -1,24 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { ChangeEvent, useState } from 'react';
 import './App.css';
-
+interface ToDoList{
+  id:number
+  toDoItem:string
+}
 function App() {
+  const [toDoText,setToDoText] = useState<string>("");
+  const [toDoList, setToDoList] = useState<ToDoList[]>([]);
+  const handleChange = (event:ChangeEvent<HTMLInputElement>)=>{
+    setToDoText(event?.target.value)
+  }
+  
+  const handleDeleteToDo = (id:number)=>{
+    setToDoList(toDoList.filter((todoItem)=>todoItem.id !== id))
+  }
+  const handleAddToDo = ()=>{
+    const newToDo:ToDoList = {id:toDoList.length +1,toDoItem:toDoText}
+    setToDoList([...toDoList,newToDo]);
+    setToDoText("")
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className='container'>
+      <input type='text' onChange={handleChange} value={toDoText}/>
+      <button onClick={handleAddToDo}>Add to do</button>
+      <ul className="todo-list">
+      {
+        (toDoList.length>0) ?(
+          toDoList.map((todoItem)=>(
+                <li key={todoItem.id} className='todo-item'>{todoItem.toDoItem}
+                <button onClick={()=>handleDeleteToDo(todoItem.id)}>Delete</button></li>
+          ))
+        ):""
+      }
+      </ul>
+      </div>
     </div>
   );
 }
