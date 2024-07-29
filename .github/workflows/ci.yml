@@ -9,7 +9,7 @@ on:
 jobs:
   build:
 
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout repository
@@ -19,6 +19,12 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: '18'
+    
+    - name: List 
+      run: ls
+
+    - name: Present Working Directory
+      run: pwd
 
     - name: Install dependencies
       run: npm install
