@@ -47,7 +47,7 @@ function App() {
         type='search' 
         onChange={handleSearch} 
         value={searchQuery} 
-        placeholder='search posts...'
+        placeholder='search blog posts...'
       />
       <ul>
         {filteredPosts.map((post:Posts) => (
